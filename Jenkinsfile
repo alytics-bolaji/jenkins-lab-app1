@@ -20,6 +20,7 @@ pipeline {
                 echo "Branch: ${env.GIT_BRANCH}"
                 echo "Build #: ${env.BUILD_NUMBER}"
                 sh 'java -version || echo No Java installed'
+                echo "Running on node: ${env.NODE_NAME}"
             }
         }
  
