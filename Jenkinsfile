@@ -73,7 +73,7 @@ pipeline {
  
         // Manual approval gate before production deployment
         stage('Approve for Production') {
-            when { branch 'main' }
+            when { return env.GIT_BRANCH == 'origin/main'}
             steps {
                 input message: 'Deploy to production?',
                       ok: 'Yes, deploy!',
@@ -82,7 +82,7 @@ pipeline {
         }
  
         stage('Deploy to Production') {
-            when { branch 'main' }
+            when {return env.GIT_BRANCH == 'origin/main'}
             steps {
                 echo 'Deploying to production!'
                 sh 'echo Production deploy complete'
