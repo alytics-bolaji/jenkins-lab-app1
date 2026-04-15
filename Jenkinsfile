@@ -59,6 +59,22 @@ pipeline {
                 archiveArtifacts artifacts: 'app.jar'
             }
         }
+
+        stage('Call API') {
+            environment {
+                // Binds the secret to the variable MY_TOKEN
+                // Jenkins will MASK this value in logs automatically
+                MY_TOKEN = credentials('demo-api-key1')
+            }
+            steps {
+                // This is safe — Jenkins masks the value in logs
+                sh 'echo "Calling API with token: $MY_TOKEN"'
+                // NEVER do this — but notice it still gets masked:
+                sh 'echo "Token begins with: ${MY_TOKEN:0:4}..."'
+            }
+        }
+
+
  
         // This stage only runs on the main branch
         stage('Deploy to Staging') {
