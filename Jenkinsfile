@@ -22,6 +22,10 @@ pipeline {
         stage('Checkout') {
             steps { checkout scm }
         }
+
+        stage('Debug') {
+            steps { echo "BRANCH_NAME: ${env.BRANCH_NAME}" }
+        }
  
         // Parallel stage: lint and unit tests run at the same time
         stage('Validate') {
