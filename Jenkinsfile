@@ -70,7 +70,11 @@ pipeline {
                 // This is safe — Jenkins masks the value in logs
                 sh 'echo "Calling API with token: $MY_TOKEN"'
                 // NEVER do this — but notice it still gets masked:
-                sh 'echo "Token begins with: ${MY_TOKEN:0:4}..."'
+                // sh 'echo "Token begins with: ${MY_TOKEN:0:4}..."'
+                sh '''
+                #!/bin/bash
+                echo "Token begins with: ${MY_TOKEN:0:4}..."
+                '''
             }
         }
 
