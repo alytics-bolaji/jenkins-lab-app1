@@ -63,7 +63,7 @@ pipeline {
         // This stage only runs on the main branch
         stage('Deploy to Staging') {
             when {
-                branch 'main'
+               expression {return env.GIT_BRANCH == 'origin/main'}
             }
             steps {
                 echo "Deploying to ${env.DEPLOY_ENV}..."
