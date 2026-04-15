@@ -72,8 +72,7 @@ pipeline {
                 // NEVER do this — but notice it still gets masked:
                 // sh 'echo "Token begins with: ${MY_TOKEN:0:4}..."'
                 sh '''
-                #!/bin/bash
-                echo "Token begins with: ${MY_TOKEN:0:4}..."
+                echo "Token begins with: $(echo $MY_TOKEN | cut -c1-4)..."
                 '''
             }
         }
